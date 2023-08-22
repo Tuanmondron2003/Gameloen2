@@ -558,5 +558,22 @@
   
     // ... Các phần sau đó của mã ...
   </script>
+  <script>
+  document.getElementById("moveUpButton").addEventListener("click", () => {
+    if (!isPaused && direction !== "down") direction = "up";
+  });
+
+  document.getElementById("moveLeftButton").addEventListener("click", () => {
+    if (!isPaused && direction !== "right") direction = "left";
+  });
+
+  document.getElementById("moveRightButton").addEventListener("click", () => {
+    if (!isPaused && direction !== "left") direction = "right";
+  });
+
+  document.getElementById("moveDownButton").addEventListener("click", () => {
+    if (!isPaused && direction !== "up") direction = "down";
+  });
+  </script>
 </body>
 </html>
