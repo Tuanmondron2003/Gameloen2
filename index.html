@@ -19,21 +19,39 @@
     .button {
       margin: 5px;
     }
-  </style>
-  <style>
-    /* Ẩn nút di chuyển trên màn hình lớn */
-    .mobile-controls {
-      display: none;
-    }
+    /* CSS cho nút di chuyển */
+.move-button {
+    font-size: 24px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
   
-    /* Hiện nút di chuyển khi màn hình nhỏ */
-    @media screen and (max-width: 768px) {
-      .mobile-controls {
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-      }
-    }
+  .button-container {
+    text-align: center;
+    margin-top: 10px;
+  }
+  /* CSS cho nút di chuyển dọc */
+.vertical-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 100px; /* Điều chỉnh chiều cao phù hợp */
+  }
+  /* CSS cho nút sang trái và sang phải */
+#rightButton {
+    float: right;
+    margin-top: 10px;
+  }
+  
+  #leftButton {
+    float: right;
+  }      
   </style>  
 </head>
 <body>
@@ -52,12 +70,13 @@
         <div id="countdown" style="display: none;"></div>
       </div>
     </div>
-  </div>
-  <div class="mobile-controls">
-    <button id="moveUpButton">↑</button>
-    <button id="moveLeftButton">←</button>
-    <button id="moveRightButton">→</button>
-    <button id="moveDownButton">↓</button>
+    <!-- Các nút di chuyển -->
+  <div class="button-container">
+    <button class="move-button" id="upButton">↑</button>
+    <button class="move-button" id="leftButton">←</button>
+    <button class="move-button" id="rightButton">→</button>
+    <button class="move-button" id="downButton">↓</button>
+  </div>  
   </div>  
   <script>
     const canvas = document.getElementById("gameCanvas");
@@ -244,6 +263,23 @@
     });
 
     let interval = setInterval(updateGameArea, speed);
+    // Lắng nghe sự kiện click trên các nút di chuyển
+document.getElementById("upButton").addEventListener("click", () => {
+    if (!isPaused && direction !== "down") direction = "up";
+  });
+  
+  document.getElementById("leftButton").addEventListener("click", () => {
+    if (!isPaused && direction !== "right") direction = "left";
+  });
+  
+  document.getElementById("rightButton").addEventListener("click", () => {
+    if (!isPaused && direction !== "left") direction = "right";
+  });
+  
+  document.getElementById("downButton").addEventListener("click", () => {
+    if (!isPaused && direction !== "up") direction = "down";
+  });
+  
   </script>
   <script>
   
@@ -557,23 +593,6 @@
     }
   
     // ... Các phần sau đó của mã ...
-  </script>
-  <script>
-  document.getElementById("moveUpButton").addEventListener("click", () => {
-    if (!isPaused && direction !== "down") direction = "up";
-  });
-
-  document.getElementById("moveLeftButton").addEventListener("click", () => {
-    if (!isPaused && direction !== "right") direction = "left";
-  });
-
-  document.getElementById("moveRightButton").addEventListener("click", () => {
-    if (!isPaused && direction !== "left") direction = "right";
-  });
-
-  document.getElementById("moveDownButton").addEventListener("click", () => {
-    if (!isPaused && direction !== "up") direction = "down";
-  });
   </script>
 </body>
 </html>
