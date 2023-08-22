@@ -20,6 +20,21 @@
       margin: 5px;
     }
   </style>
+  <style>
+    /* Ẩn nút di chuyển trên màn hình lớn */
+    .mobile-controls {
+      display: none;
+    }
+  
+    /* Hiện nút di chuyển khi màn hình nhỏ */
+    @media screen and (max-width: 768px) {
+      .mobile-controls {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+      }
+    }
+  </style>  
 </head>
 <body>
     <div class="time-container">
@@ -38,6 +53,12 @@
       </div>
     </div>
   </div>
+  <div class="mobile-controls">
+    <button id="moveUpButton">↑</button>
+    <button id="moveLeftButton">←</button>
+    <button id="moveRightButton">→</button>
+    <button id="moveDownButton">↓</button>
+  </div>  
   <script>
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
