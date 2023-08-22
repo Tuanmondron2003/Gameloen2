@@ -51,7 +51,19 @@
   
   #leftButton {
     float: right;
-  }      
+  }
+  .move-button {
+    /* ... */
+    width: 80px;
+    height: 80px;
+    font-size: 80px; /* Phóng to nút lên */
+    margin: 8px;
+    cursor: pointer;
+  }
+  
+  #downButton, #rightButton, #leftButton {
+    font-size: 20px; /* Kích thước ban đầu cho các nút khác */
+  }        
   </style>  
 </head>
 <body>
@@ -76,7 +88,16 @@
     <button class="move-button" id="leftButton">←</button>
     <button class="move-button" id="rightButton">→</button>
     <button class="move-button" id="downButton">↓</button>
-  </div>  
+  </div>
+  <div class="button-container">
+    <div class="vertical-buttons">
+      <button class="move-button" id="upButton">↑</button>
+      <button class="move-button" id="downButton">↓</button>
+    </div>
+    <button class="move-button" id="rightButton">→</button>
+    <button class="move-button" id="leftButton">←</button>
+    <button class="restart-button" id="restartButton">Restart</button>
+  </div>   
   </div>  
   <script>
     const canvas = document.getElementById("gameCanvas");
@@ -437,6 +458,23 @@ document.getElementById("upButton").addEventListener("click", () => {
         drawSnakePart(snake[i], "green");
       }
     }
+    document.getElementById("restartButton").addEventListener("click", () => {
+        restartGame();
+      });
+      
+      function restartGame() {
+        // Đặt lại tất cả các biến và dữ liệu trò chơi
+        snake = [{ x: 5, y: 5 }];
+        food = { x: 10, y: 10 };
+        enemies = [];
+        direction = "right";
+        score = 0;
+        lastEnemySpawnTime = 0;
+      
+        // Bắt đầu trò chơi lại
+        clearInterval(interval);
+        interval = setInterval(updateGameArea, speed);
+      }      
   
     // ... Các phần sau đó của mã ...
   </script>
